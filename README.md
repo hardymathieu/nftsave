@@ -60,7 +60,7 @@ I mark it as downloaded in the DB so I don't redownload it at the next run.
 - make all the variables much easier to find (wallets, chains, API Keys,...) so it's easier to maintain
 - if one thing requires that another thing be finished, build that into the script (as opposed to scheduling cron jobs naively 6 hours apart as "that should be enough")
 - make sure everything (csv, db, logs,...) gets outputted/created inside the folder where the script it running or at least someplace more manageable than /home/hardymathieu. Because it can get a little messy. And the backup config (rsync) would be easier if there was more order.
-- find an alternative to the OpenseaAPI just in case I can't realy on it anymore one of these days.
+- find an alternative to the OpenseaAPI just in case I can't rely on it anymore one of these days.
 
 # PSA: A note if, like me, you're new(ish) to Python, and shy
 The language (python) is great. But managing where it runs and the conflicts between all the things you install with "pip" is an incredible PITA.
@@ -112,3 +112,7 @@ $ sudo chmod +x /home/hardymathieu/nftipfs/opensea2csv.py
 ```
 
 then add the script to crontab
+
+# Backup
+To make sure you don't lose any of your hard work, and information gathered by all the daily cron jobs, use rsync and create a backup of the nfts.csv, nft_cids.csv, SQLite database, .ipfs folder
+you might also want to backup all the .py files, and (if they aren't in the same place) possibly the folders where you have your python venv

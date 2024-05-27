@@ -24,20 +24,20 @@ It's easy, you edit your crontab everything just runs on a schedule.
 
 # What's in it
 
-Basically 5 steps: Ask Opensea for everything you hold > extract the CIDs > put it all in a database > Pin the CIDs to your IPFS node > dowload all the images.
+Basically 5 steps: Ask Opensea for everything you hold > extract the CIDs > put it all in a database > Pin the CIDs to your IPFS node > download all the images.
 
-## Opensea to csv
+## 1/ Opensea to csv
 Uses the [Opensea API ](https://docs.opensea.io/) to get all the NFTs I have on all the wallets I give it for all the chains I want (that Opensea supports). And lists it all in a CSV file for use later, and a txt file with a list of everything the run collected, for safekeeping.
 
-## extract CIDs
+## 2/ Extract CIDs
 Now that I have all the info from OpenSea, I need to extract the CIDs I will later pin to my ipfs node, whether in the "metadata" or "image" fields. Some of it is in base64 so that needs to be translated.
 That gets written to another csv file
 
-## pushing it all to a database
+## 3/ Pushing it all to a database
 At this step, we read the nfts.csv file and the nft_cids.csv file, join them with the unique_key we created, and turn that all into a SQLite database. Because that's easier to play with than 2 csv files.
 As noted below, I could have just gone and written to an SQLite database for the two steps above as well. But I didn't know about SQlite when I wrote those scripts, and didn't really feel like rewriting them because they work.
 
-## pinning it all to my IPFS node
+## 4/ Pinning it all to my IPFS node
 Since IPFS (kubo) has [an RPC API](https://docs.ipfs.tech/reference/kubo/rpc/), we can use that to read the db and pin very CID we encounter.
 There was a python client implementation I never managed to get to work so I'm just doing the API calls directly. It works and it's really easier to understand.
 
@@ -46,7 +46,7 @@ I find ipfs to be super confusing but I think I got it all to work. I now have a
 I didn't go the complicated route and I recursively pin everything. I figured that way I'm doing a public service to all of the other owners of the same collections I'm holding. 
 I mark it as "pinned" in the database so I don't try doing that again at the next run.
 
-## downloading all images 
+## 5/ downloading all images 
 This is just so I can diplay them on my TV or find them easily if needed. It doesn't actually "back them up" since the authoritative server is the one referenced in the NFT metadata. And if the media at that link is taken down, there's no way I can prove I had downloaded it beforehand.
 That's why onchain or ipfs NFTs are vastly superior to those pointing to a company server somewhere.
 But sometimes NFTs are just fun and you don't care how long their media stays only. They're still a marker that something happened at sometime. 

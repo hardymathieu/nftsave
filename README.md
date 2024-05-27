@@ -3,20 +3,23 @@ Collect NFT data, pin ipfs content, download images, find out interesting things
 
 # Why?
 "NFTs are just pointers to a server."
-Often true, but if that "server" is the ipfs, then you can actually (self) custody the files as well as the NFT.
-I'd been meaning to find a way to do that "at scale" and after finding no reasonable existing solution, decided to whip it up myself.
+Often true, but if that "server" is the ipfs, then you can actually (self) custody the files as well as the Non Fungible Token.
+I'd been meaning to find a way to do that "at scale" and after finding no reasonable existing solution, decided to whip it up myself. Because "don't trust, verify", "Not your key, not your coins", and all that.
 (if unconvinced, learn more about why NFTs are awesome from [Punk6529](https://6529.io/education/tweetstorms/).)
 
 # Disclaimer
-I can't really code :D
-This was all put together with the help of various LLMs who helped me translate from English to Python.
-Surprisingly, it runs. That's all I need it to do. It runs and it gets me my NFT data as intended.
-It's likely quite inelegant, It's probably super inefficient. I haven't tried following good practices (even the ones I know about) but the objective was to get it running.
-Maybe I'll look into optmizing it, although I enjoy 0 -> 1 more than 1 -> 1.5; so probably not. 
+I can't really code :D 
 
+You'll figure it out soon if you start looking at the files. This was all put together with the help of various LLMs who helped me translate from English to Python.
+But surprisingly, it runs. 
+That's all I need it to do. It runs and it gets me my NFT data as intended.
+It's likely quite inelegant, It's probably super inefficient. I haven't tried following good practices (even the ones I know about) but the objective was to get it running.
+I can now speak computer, and get it to do my bidding, and that's awesome. Completely new unlock.
+
+Maybe I'll look into optmizing it, although I enjoy 0 -> 1 more than 1 -> 1.5; so probably not. 
 If you, dear reader, on the other hand do enjoy perfercting things, **contributions are very welcome!**
 
-I'm just sharing it because it might help someone else (1) custody their own NFTs so they can safeguard things they care about (2) realize that LLMs are pretty good at translating EN to Python and that you can get computers to do things for you if you leverage the power of that translation engine. Which I think are both worthwhile things to share.
+**I'm just sharing it because it might help someone else (1) custody their own NFTs so they can safeguard things they care about (2) realize that LLMs are pretty good at translating EN to Python and that you can get computers to do things for you if you leverage the power of that translation engine. Which I think are both worthwhile things to share.**
 
 # How I use it
 I have cron jobs that run each of the scripts, in the right sequence, so as to achieve the ojective.
@@ -54,13 +57,13 @@ And I'll still have the media for my own enjoyment if I want to.
 Don't overthink it.
 I mark it as downloaded in the DB so I don't redownload it at the next run.
 
-# obvious changes, if you want to improve it
+# Obvious changes to make, if you want to improve it
 - don't write your API keys in the script file, use os variables instead
 - use the SQLite db from the start instead of relying on csv files initially. I only learned about SQLite after I had already created the first two scripts. And I didn't want to go back and change everything. it works :)
 - make all the variables much easier to find (wallets, chains, API Keys,...) so it's easier to maintain
 - if one thing requires that another thing be finished, build that into the script (as opposed to scheduling cron jobs naively 6 hours apart as "that should be enough")
 - make sure everything (csv, db, logs,...) gets outputted/created inside the folder where the script it running or at least someplace more manageable than /home/hardymathieu. Because it can get a little messy. And the backup config (rsync) would be easier if there was more order.
-- find an alternative to the OpenseaAPI just in case I can't rely on it anymore one of these days.
+- find an alternative to the OpenseaAPI just in case I can't rely on it anymore one of these days. Or to get data from more chains (Gnosis would be nice)
 
 # PSA: A note if, like me, you're new(ish) to Python, and shy
 The language (python) is great. But managing where it runs and the conflicts between all the things you install with "pip" is an incredible PITA.

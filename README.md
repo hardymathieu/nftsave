@@ -1,6 +1,8 @@
 # nftsave
 Collect NFT data, pin ipfs content, download images, find out interesting things about your NFTs from an SQLite database.
 
+It's basically connecting two APIs together (Opensea => IPFS), with some interesting side-effects.
+
 # Why?
 "NFTs are just pointers to a server."
 Often true, but if that "server" is the ipfs, then you can actually (self) custody the files as well as the Non Fungible Token.
@@ -10,13 +12,17 @@ I'd been meaning to find a way to do that "at scale" and after finding no reason
 # Disclaimer
 I can't really code :D 
 
-You'll figure it out soon if you start looking at the files. This was all put together with the help of various LLMs who helped me translate from English to Python.
-But surprisingly, it runs. 
+If you do, you'll figure it out soon if you start looking at the files. So I might as well come out now.
+This was all put together with the help of various LLMs who helped me translate from English to Python.
+And, surprisingly, it runs. 
+
 That's all I need it to do. It runs and it gets me my NFT data as intended.
+
 It's likely quite inelegant, It's probably super inefficient. I haven't tried following good practices (even the ones I know about) but the objective was to get it running.
 I can now speak computer, and get it to do my bidding, and that's awesome. Completely new unlock.
+I have no illusion that it's turned me into a dev. It hasn't. But it did allow me to go beyond using je the terminal/basic bash scripts/no code tools I never managed to do my bidding/GUI. And that's quite interesting. And while the LLMs did do a lot of the work, I did pickup quite some new skills when putting it together (learning about venv, the SQlite db, SQL queries, Python with cron, IPFS and its API...)
 
-Maybe I'll look into optmizing it, although I enjoy 0 -> 1 more than 1 -> 1.5; so probably not. 
+Maybe I'll look into optmizing it, although for these sort of things I enjoy 0 -> 1 more than 1 -> 1.5; so probably not. 
 If you, dear reader, on the other hand do enjoy perfercting things, **contributions are very welcome!**
 
 **I'm just sharing it because it might help someone else (1) custody their own NFTs so they can safeguard things they care about (2) realize that LLMs are pretty good at translating EN to Python and that you can get computers to do things for you if you leverage the power of that translation engine. Which I think are both worthwhile things to share.**
@@ -58,19 +64,20 @@ Don't overthink it.
 I mark it as downloaded in the DB so I don't redownload it at the next run.
 
 # Obvious changes to make, if you want to improve it
-- don't write your API keys in the script file, use os variables instead
-- use the SQLite db from the start instead of relying on csv files initially. I only learned about SQLite after I had already created the first two scripts. And I didn't want to go back and change everything. it works :)
-- make all the variables much easier to find (wallets, chains, API Keys,...) so it's easier to maintain
-- if one thing requires that another thing be finished, build that into the script (as opposed to scheduling cron jobs naively 6 hours apart as "that should be enough")
-- make sure everything (csv, db, logs,...) gets outputted/created inside the folder where the script it running or at least someplace more manageable than /home/hardymathieu. Because it can get a little messy. And the backup config (rsync) would be easier if there was more order.
-- find an alternative to the OpenseaAPI just in case I can't rely on it anymore one of these days. Or to get data from more chains (Gnosis would be nice)
+- Don't write your API keys in the script file, use [environment variables](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety#h_a1ab3ba7b2) instead
+- Use the SQLite db from the start instead of relying on csv files initially. I only learned about SQLite after I had already created the first two scripts. And I didn't want to go back and change everything. It works :)
+- Make all the variables much easier to find (wallets, chains, API Keys,...) so it's easier to maintain -- but there aren't that many, it's quite manageable (and indicated in the comments of the code).
+- If one thing requires that another thing be finished, build that into the script (as opposed to scheduling cron jobs naively 6 hours apart as "that should be enough")
+-- I found out I can use "[subprocess.call](https://www.datacamp.com/tutorial/python-subprocess)" to create 1 file that will quite naively run the 5 scripts sequentially. That's more than enough for my needs and I can just create 1 cron job instead of 5, so I'm now using that :) 
+- Make sure everything (csv, db, logs,...) gets outputted/created inside the folder where the script it running or at least someplace more manageable than /home/hardymathieu. Because it can get a little messy. And the backup config (rsync) would be easier if there was more order.
+- Find an alternative to the OpenseaAPI just in case I can't rely on it anymore one of these days. Or to get data from more chains (Gnosis would be nice)
 
 # PSA: A note if, like me, you're new(ish) to Python, and shy
-The language (python) is great. But managing where it runs and the conflicts between all the things you install with "pip" is an incredible PITA.
+The language (python) is great. Supported everywhere I could think of, docs are good, large community, and hence the LLMs got plenty of training data. But managing where it runs and the conflicts between all the things you install with "pip" is an incredible PITA. [See here for a great example.](https://x.com/NickADobos/status/1792180024281579719)
 I have had issues with that forever. 
 
 I discovered 2 amazing things that really solve that:
-(1) **colab.google.com** : super easy notebooks where you can just get to writing code without worrying about the infra. Thanks Google for all the free compute. I do all of my prototyping there. It works in 99.9999% of the cases where I need it. Obviously it can't work with my ipfs node (because it's behind my home network firewall) but for steps 1,2,3 and 5 that's where I first wrote all the code. The tweaking required when porting it over to my actual computer is absolutely minimal.
+(1) **colab.google.com** : super easy notebooks where you can just get to writing code without worrying about the infra. Thanks Google for all the free compute. I do all of my prototyping there. It works in 99.9999% of the cases where I need it. Obviously it can't work with my ipfs node (because it's not exposed to the internet, [as it shouldn't be](https://docs.ipfs.tech/reference/kubo/rpc/)) but for steps 1,2,3 and 5 that's where I first wrote all the code. The tweaking required when porting it over to my actual computer is absolutely minimal.
 (2) **venv**, and right now I think it's the best thing after sliced bread.
 
 I'd actually learned of [venv](https://docs.python.org/3/library/venv.html) a while back, and it felt a little intimidating.

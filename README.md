@@ -1,5 +1,5 @@
 # nftsave
-Collect NFT data, pin ipfs content, download images, find out interesting things about your NFTs from an SQLite database.
+Collect NFT data from your wallets, pin ipfs content to your local node, download images, find out interesting things about your NFTs from an SQLite database.
 
 It's basically connecting two APIs together (Opensea => IPFS), with some interesting side-effects.
 

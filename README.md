@@ -5,7 +5,7 @@ It's basically connecting two APIs together (Opensea => IPFS), with some interes
 
 # Why?
 "NFTs are just pointers to a server."
-Often true, but if that "server" is the ipfs, then you can actually (self) custody the files as well as the Non Fungible Token.
+Often true, but if that "server" is the ipfs, then you can actually (self) custody the files as well as the Non-Fungible Token.
 I'd been meaning to find a way to do that "at scale" and after finding no reasonable existing solution, decided to whip it up myself. Because "don't trust, verify", "Not your key, not your coins", and all that.
 (if unconvinced, learn more about why NFTs are awesome from [Punk6529](https://6529.io/education/tweetstorms/).)
 

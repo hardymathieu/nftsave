@@ -77,8 +77,8 @@ The language (python) is great. Supported everywhere I could think of, docs are 
 I have had issues with that forever. 
 
 I discovered 2 amazing things that really solve that:
-(1) **colab.google.com** : super easy notebooks where you can just get to writing code without worrying about the infra. Thanks Google for all the free compute. I do all of my prototyping there. It works in 99.9999% of the cases where I need it. Obviously it can't work with my ipfs node (because it's not exposed to the internet, [as it shouldn't be](https://docs.ipfs.tech/reference/kubo/rpc/)) but for steps 1,2,3 and 5 that's where I first wrote all the code. The tweaking required when porting it over to my actual computer is absolutely minimal.
-(2) **venv**, and right now I think it's the best thing after sliced bread.
+* (1) **colab.google.com** : super easy notebooks where you can just get to writing code without worrying about the infra. Thanks Google for all the free compute. I do all of my prototyping there. It works in 99.9999% of the cases where I need it. Obviously it can't work with my ipfs node (because it's not exposed to the internet, [as it shouldn't be](https://docs.ipfs.tech/reference/kubo/rpc/)) but for steps 1,2,3 and 5 that's where I first wrote all the code. The tweaking required when porting it over to my actual computer is absolutely minimal.
+* (2) **venv**, and right now I think it's the best thing after sliced bread.
 
 I'd actually learned of [venv](https://docs.python.org/3/library/venv.html) a while back, and it felt a little intimidating.
 It turns out, once you actually try it, it's really not.

@@ -20,7 +20,7 @@ That's all I need it to do. It runs and it gets me my NFT data as intended.
 
 It's likely quite inelegant, It's probably super inefficient. I haven't tried following good practices (even the ones I know about) but the objective was to get it running.
 I can now speak computer (if we keep the analogy, probably with the fluency of a 3 year old), and get it to do my bidding (just like I do my 3 year old's if he asks nicely), and that's awesome. Completely new unlock.
-I have no illusion that it's turned me into a dev. It hasn't. But it did allow me to go beyond using je the terminal/basic bash scripts/no code tools I never managed to do my bidding/GUI. And that's quite interesting. And while the LLMs did do a lot of the work, I did pickup quite some new skills when putting it together (learning about venv, the SQlite db, SQL queries, Python with cron, IPFS and its API...)
+I have no illusion that it's turned me into a dev. It hasn't. But it did allow me to go beyond using je the terminal/basic bash scripts/no code tools I never managed to do my bidding/GUI. And that's quite interesting. And while the LLMs did do a lot of the work, I did pickup quite some new skills when putting it together (learning about venv, the SQlite db, SQL queries, Python with cron, IPFS and its API...); and that's always nice.
 
 Maybe I'll look into optmizing it, although for these sort of things I enjoy 0 -> 1 more than 1 -> 1.5; so probably not. 
 If you, dear reader, on the other hand do enjoy perfercting things, **contributions are very welcome!**
